@@ -1,0 +1,102 @@
+@startuml
+
+class Logger {
+    {static} void v(String tag, Object... args)
+    {static} void d(String tag, Object... args)
+    {static} void i(String tag, Object... args)
+    {static} void w(String tag, Object... args)
+    {static} void e(String tag, Object... args)
+    {static} void a(String tag, Object... args)
+    {static} void log(@NonNull LogConfig config, @LogType.TYPE int type,@NonNull String tag, Object... args)
+}
+note left of Logger: 日志工具类的门面封装
+
+class LogManager {
+    {static} LogManager getInstance()
+    {static} void init(@NonNull LogConfig config, LogPrinter... printers)
+    +LogConfig getConfig()
+    +List<LogPrinter> getPrinters()
+    +void addPrinter(LogPrinter printer)
+    +void removePrinter(LogPrinter printer)
+}
+note right of LogManager: 日志管理器
+
+Logger .. LogManager : 存在依赖
+
+interface LogPrinter {
+    void print(@NonNull LogConfig config,int level,String tag, @NonNull String printString)
+}
+note right of LogPrinter: 日志打印接口，基于该接口实现自定义日志打印方式
+LogManager o-- LogPrinter: 日志管理器由日志打印接口聚合而成
+
+class FileLogPrinter implements LogPrinter {
+
+}
+note bottom of FileLogPrinter: 文件日志打印器
+
+class ViewLogPrinter implements LogPrinter {
+    -RecyclerView recyclerView
+    -LogAdapter logAdapter
+    -ViewPrinterProvoder viewPrinterProvider
+}
+note bottom of ViewLogPrinter: 视图日志打印器
+
+class ViewPrinterProvider {
+   -FrameLayout rootView
+   -view floatingView
+   -boolean isOpen
+   -FrameLayout logView
+   -RecyclerView recyclerView
+}
+ViewLogPrinter *-- ViewPrinterProvider: 视图日志打印器由视图日志打印器提供者组合而成
+
+class ConsoleLogPrinter implements LogPrinter {
+
+}
+note bottom of ConsoleLogPrinter: 控制台日志打印器
+
+abstract class LogConfig {
+    JsonParser injectJsonParser
+    +String getGlobalTag()
+    boolean enable()
+    boolean includeThread()
+    int stackTraceDepth()
+    ArrayList: LogPrinter[] printers
+}
+
+LogManager o-- LogConfig: 日志管理器由日志配置聚合而成
+
+class LogFormatter {
+    String format(T data)
+}
+
+class ThreadFormatter implements LogFormatter {
+}
+LogConfig *-- ThreadFormatter
+
+class StackTraceFormatter implements LogFormatter {
+}
+LogConfig *-- StackTraceFormatter
+
+class StackTraceUtils {
+}
+note top of StackTraceUtils: 堆栈信息工具
+
+class LogModel {
+    long timestamp
+    int level
+    String tag
+    String log
+}
+note top of LogModel: 日志模型
+
+class LogType {
+}
+note top of LogType: 日志类型
+
+interface JsonParser {
+    String parse(String json)
+}
+note top of JsonParser: 日志序列化接口
+
+@enduml
