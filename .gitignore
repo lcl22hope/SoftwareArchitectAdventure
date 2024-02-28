@@ -1,0 +1,15 @@
+*.iml
+.gradle
+/local.properties
+Android_Adventure/YZLibrary/.idea/caches
+Android_Adventure/YZLibrary/.idea/libraries
+Android_Adventure/YZLibrary/.idea/modules.xml
+Android_Adventure/YZLibrary/.idea/workspace.xml
+Android_Adventure/YZLibrary/.idea/navEditor.xml
+Android_Adventure/YZLibrary/.idea/assetWizardSettings.xml
+.DS_Store
+Android_Adventure/YZLibrary/build
+Android_Adventure/YZLibrary/captures
+.externalNativeBuild
+.cxx
+local.properties
