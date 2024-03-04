@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="log_v">#ffbbbbbb</color>
+    <color name="log_d">#ffffffff</color>
+    <color name="log_i">#ff6a8759</color>
+    <color name="log_w">#ffbbb529</color>
+    <color name="log_e">#ffff6b68</color>
+    <color name="log_a">#ffffff00</color>
+</resources>

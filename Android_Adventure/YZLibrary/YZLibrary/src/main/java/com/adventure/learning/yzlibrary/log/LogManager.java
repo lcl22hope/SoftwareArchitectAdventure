@@ -2,22 +2,29 @@ package com.adventure.learning.yzlibrary.log;
 
 import androidx.annotation.NonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LogManager {
-    private LogConfig config;
-
-    private LogManager(LogConfig config) {
-        this.config = config;
-    }
     static LogManager instance;
+    private LogConfig config;
+    private List<LogPrinter> printers = new ArrayList<>();
 
-    static LogManager getInstance() {
+    private LogManager(LogConfig config, LogPrinter[] printers) {
+        this.config = config;
+        this.printers.addAll(Arrays.asList(printers));
+    }
+
+    public static LogManager getInstance() {
         return instance;
     }
 
-    public static void init(@NonNull LogConfig config) {
-        instance = new LogManager(config);
+    /**
+     * 为了调用方便，引入可变参数的 printers
+     * */
+    public static void init(@NonNull LogConfig config, LogPrinter... printers) {
+        instance = new LogManager(config, printers);
     }
 
     public LogConfig getConfig() {
@@ -25,12 +32,16 @@ public class LogManager {
     }
 
     List<LogPrinter> getPrinters() {
-        return null;
+        return this.printers;
     }
 
-    void addPrinter(LogPrinter printer) {
+    public void addPrinter(LogPrinter printer) {
+        this.printers.add(printer);
     }
 
-    void removePrinter(LogPrinter printer) {
+    public void removePrinter(LogPrinter printer) {
+        if (this.printers != null || this.printers.contains(printer)) {
+            this.printers.remove(printer);
+        }
     }
 }

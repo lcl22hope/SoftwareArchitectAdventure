@@ -4,13 +4,21 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import java.util.Arrays;
+import java.util.List;
+
 //TODO:
 // 1. 打印堆栈信息
 // 2. File输出
 // 3. 控制台输出
 
 public class Logger {
+    private static final String IGNORE_PACKAGE_NAME;
 
+    static {
+        String className = Logger.class.getName();
+        IGNORE_PACKAGE_NAME = className.substring(0, className.lastIndexOf('.') + 1);
+    }
     public static void v(Object... args) {
         log(LogType.V, args);
     }
@@ -67,12 +75,35 @@ public class Logger {
             return;
         }
         StringBuilder sb = new StringBuilder();
-        String body = parseBody(args);
+        if (config.includeThread()) {
+            String threadInfo = LogConfig.THREAD_FORMATTER.format(Thread.currentThread());
+            sb.append(threadInfo).append("\n");
+        }
+        if (config.stackTraceDepth() > 0) {
+            String stackTraceInfo = LogConfig.STACK_TRACE_FORMATTER.format(StackTraceUtil.getCroppedRealStackTrace(
+                new Throwable().getStackTrace(),
+                IGNORE_PACKAGE_NAME,
+                config.stackTraceDepth()
+            ));
+            sb.append(stackTraceInfo).append("\n");
+        }
+        String body = parseBody(args, config);
         sb.append(body);
         Log.println(type, tag, sb.toString());
+
+        List<LogPrinter> printers = config.printers() != null ? Arrays.asList(config.printers()) : null;
+        if (printers == null) {
+            return;
+        }
+        for (LogPrinter printer : printers) {
+            printer.print(config, type, tag, sb.toString());
+        }
     }
 
-    private static String parseBody(@NonNull Object[] contents) {
+    private static String parseBody(@NonNull Object[] contents, LogConfig config) {
+        if (config.injectJsonParser() != null) {
+            return config.injectJsonParser().toJSON(contents);
+        }
         StringBuilder sb = new StringBuilder();
         for (Object content : contents) {
             sb.append(content.toString()).append(";");
