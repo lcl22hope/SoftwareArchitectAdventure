@@ -1,6 +1,7 @@
 *.iml
 .gradle
 /local.properties
+Android_Adventure/YZLibrary/.idea/
 Android_Adventure/YZLibrary/.idea/caches
 Android_Adventure/YZLibrary/.idea/libraries
 Android_Adventure/YZLibrary/.idea/modules.xml
