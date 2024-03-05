@@ -91,7 +91,7 @@ public class Logger {
         sb.append(body);
         Log.println(type, tag, sb.toString());
 
-        List<LogPrinter> printers = config.printers() != null ? Arrays.asList(config.printers()) : null;
+        List<LogPrinter> printers = config.getPrinters()!= null ? config.getPrinters() : null;
         if (printers == null) {
             return;
         }

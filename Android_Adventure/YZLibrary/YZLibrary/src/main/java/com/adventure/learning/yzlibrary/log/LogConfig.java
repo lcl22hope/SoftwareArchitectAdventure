@@ -4,11 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class LogConfig {
-    // 定义日志显示每行最大的字符数
+    /**
+     * 定义日志显示每行最大的字符数
+     */
     static int MAX_LEN = 512;
 
-    static StackTraceFormatter STACK_TRACE_FORMATTER = new StackTraceFormatter(); // 懒汉模式创建单例
-    static ThreadFormatter THREAD_FORMATTER = new ThreadFormatter(); // 懒汉模式创建单例
+    /**
+     * 懒汉模式创建单例
+     *
+     */
+    static StackTraceFormatter STACK_TRACE_FORMATTER = new StackTraceFormatter();
+    /**
+     * 懒汉模式创建单例
+     */
+    static ThreadFormatter THREAD_FORMATTER = new ThreadFormatter();
 
     /**
      * json 序列化功能的注入实现
@@ -25,8 +34,16 @@ public abstract class LogConfig {
         String toJSON(Object stc);
     }
 
-    public LogPrinter[] printers() {
-        return null;
+    public void addPrinter(LogPrinter printer) {
+        printers.add(printer);
+    }
+
+    public void removePrinter(LogPrinter printer) {
+        printers.remove(printer);
+    }
+
+    public List<LogPrinter> getPrinters() {
+        return printers;
     }
 
     private List<LogPrinter> printers = new ArrayList<>();

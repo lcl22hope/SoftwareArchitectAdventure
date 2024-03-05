@@ -89,7 +89,7 @@ public class ViewLogPrinterProvider {
             return logView;
         }
         FrameLayout logView = new FrameLayout(roorView.getContext());
-        logView.setBackgroundColor(Color.BLACK);
+        logView.setBackgroundColor(Color.LTGRAY);
         logView.addView(recyclerView);
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         params.gravity = Gravity.END;

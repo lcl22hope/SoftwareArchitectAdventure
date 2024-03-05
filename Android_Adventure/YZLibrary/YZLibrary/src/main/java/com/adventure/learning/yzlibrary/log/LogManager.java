@@ -14,6 +14,9 @@ public class LogManager {
     private LogManager(LogConfig config, LogPrinter[] printers) {
         this.config = config;
         this.printers.addAll(Arrays.asList(printers));
+        for (LogPrinter printer : printers) {
+            this.config.addPrinter(printer);
+        }
     }
 
     public static LogManager getInstance() {
@@ -31,17 +34,15 @@ public class LogManager {
         return config;
     }
 
-    List<LogPrinter> getPrinters() {
-        return this.printers;
-    }
-
     public void addPrinter(LogPrinter printer) {
         this.printers.add(printer);
+        this.config.addPrinter(printer);
     }
 
     public void removePrinter(LogPrinter printer) {
         if (this.printers != null || this.printers.contains(printer)) {
             this.printers.remove(printer);
+            this.config.removePrinter(printer);
         }
     }
 }

@@ -42,6 +42,10 @@ public class YZLogDemoActivity extends AppCompatActivity {
             }
         };
         Logger.log(logConfig, LogType.E, "------", "hello yuzhaoooo");
-        Logger.a("90000");
+        Logger.w("90000");
+        Logger.e("90001");
+        Logger.i("90002");
+        Logger.d("90003");
+        Logger.v("90004");
     }
 }
