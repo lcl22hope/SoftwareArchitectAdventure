@@ -1,4 +1,4 @@
-package com.adventure.learning.yzlibrary.log;
+package com.adventure.learning.yzlibrary.log.printers;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -12,6 +12,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.adventure.learning.yzlibrary.R;
+import com.adventure.learning.yzlibrary.log.LogConfig;
+import com.adventure.learning.yzlibrary.log.LogItemModel;
+import com.adventure.learning.yzlibrary.log.LogPrinter;
+import com.adventure.learning.yzlibrary.log.LogType;
+import com.adventure.learning.yzlibrary.log.ViewLogPrinterProvider;
 
 import java.util.ArrayList;
 import java.util.List;

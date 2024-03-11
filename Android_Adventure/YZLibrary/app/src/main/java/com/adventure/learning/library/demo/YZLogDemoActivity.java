@@ -9,7 +9,8 @@ import com.adventure.learning.yzlibrary.log.LogConfig;
 import com.adventure.learning.yzlibrary.log.LogManager;
 import com.adventure.learning.yzlibrary.log.LogType;
 import com.adventure.learning.yzlibrary.log.Logger;
-import com.adventure.learning.yzlibrary.log.ViewLogPrinter;
+import com.adventure.learning.yzlibrary.log.printers.FileLogPrinter;
+import com.adventure.learning.yzlibrary.log.printers.ViewLogPrinter;
 
 public class YZLogDemoActivity extends AppCompatActivity {
     private ViewLogPrinter viewLogPrinter;
@@ -28,7 +29,9 @@ public class YZLogDemoActivity extends AppCompatActivity {
     }
 
     private void printLog() {
-        LogManager.getInstance().addPrinter(viewLogPrinter);
+//        LogManager.getInstance().addPrinter(viewLogPrinter);
+
+        LogManager.getInstance().addPrinter(FileLogPrinter.getInstance(null, 5000));
 
         LogConfig logConfig = new LogConfig() {
             @Override
@@ -41,11 +44,11 @@ public class YZLogDemoActivity extends AppCompatActivity {
                 return 0;
             }
         };
-        Logger.log(logConfig, LogType.E, "------", "hello yuzhaoooo");
+//        Logger.log(logConfig, LogType.E, "------", "hello yuzhaoooo");
         Logger.w("90000");
-        Logger.e("90001");
-        Logger.i("90002");
-        Logger.d("90003");
-        Logger.v("90004");
+//        Logger.e("90001");
+//        Logger.i("90002");
+//        Logger.d("90003");
+//        Logger.v("90004");
     }
 }

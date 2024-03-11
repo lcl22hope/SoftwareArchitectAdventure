@@ -7,7 +7,7 @@ public abstract class LogConfig {
     /**
      * 定义日志显示每行最大的字符数
      */
-    static int MAX_LEN = 512;
+    public static int MAX_LEN = 512;
 
     /**
      * 懒汉模式创建单例

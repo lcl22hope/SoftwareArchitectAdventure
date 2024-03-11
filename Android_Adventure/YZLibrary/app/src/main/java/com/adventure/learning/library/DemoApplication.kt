@@ -1,7 +1,7 @@
 package com.adventure.learning.library
 
 import android.app.Application
-import com.adventure.learning.yzlibrary.log.ConsoleLogPrinter
+import com.adventure.learning.yzlibrary.log.printers.ConsoleLogPrinter
 import com.adventure.learning.yzlibrary.log.LogConfig
 import com.adventure.learning.yzlibrary.log.LogConfig.JsonParser
 import com.adventure.learning.yzlibrary.log.LogManager
