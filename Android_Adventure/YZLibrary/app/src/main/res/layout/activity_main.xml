@@ -9,12 +9,23 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_navigate"
-        android:text="GoToLogPage"
+        android:id="@+id/btn_navigate_log"
+        android:text="Go_LogPage"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_navigate_bottom"
+        android:text="Go_TabBottomPage"
+        app:layout_constraintTop_toBottomOf="@+id/btn_navigate_log"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+    />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

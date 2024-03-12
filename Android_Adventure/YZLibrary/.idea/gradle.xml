@@ -12,6 +12,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/YZLibrary" />
+            <option value="$PROJECT_DIR$/YZUI" />
             <option value="$PROJECT_DIR$/app" />
           </set>
         </option>

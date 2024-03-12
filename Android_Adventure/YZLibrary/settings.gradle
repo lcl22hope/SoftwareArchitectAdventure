@@ -15,3 +15,7 @@ dependencyResolutionManagement {
 rootProject.name = "YZLibrary"
 include ':app'
 include ':YZLibrary'
+include ':YZUI'
+// 如果想本地引入一个module，需要添加
+// include ":xx-library"
+// project(":xx-library").projectDir = "../xx-library" as File

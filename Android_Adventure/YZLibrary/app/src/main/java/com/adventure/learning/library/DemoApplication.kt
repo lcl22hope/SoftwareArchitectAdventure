@@ -23,6 +23,14 @@ class DemoApplication: Application() {
             override fun enable(): Boolean {
                 return true
             }
+
+            override fun includeThread(): Boolean {
+                return false;
+            }
+
+            override fun stackTraceDepth(): Int {
+                return 0;
+            }
         }, ConsoleLogPrinter())
     }
 }
